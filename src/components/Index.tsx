@@ -7,10 +7,10 @@ import {
   Code2,
   BookOpen,
   Zap,
-  ConeIcon,
   ChevronRight,
   Cpu,
   Sparkles,
+  RefreshCw,
   Star,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -48,17 +48,26 @@ const Index = () => {
       description: "Decode bitwise expressions with AI-powered insights",
       color: "from-cyan-400 to-blue-600",
       hoverEffect: "group-hover:text-cyan-300",
-      btnHover: "hover:text-cyan-300",
+      btnHover: "hover:text-cyan-500",
       path: "/evaluator",
     },
     {
       icon: Binary,
       title: "Binary Calculator",
       description: "Visual binary arithmetic with live bit manipulation",
-      color: "from-rose-400 to-red-600",
-      hoverEffect: "group-hover:text-rose-300",
-      btnHover: "hover:text-rose-300",
+      color: "from-purple-400 to-violet-600",
+      hoverEffect: "group-hover:text-purple-300",
+      btnHover: "hover:text-purple-500",
       path: "/calculator",
+    },
+    {
+      icon: RefreshCw,
+      title: "Converter",
+      description: "Convert number systems",
+      color: "from-rose-400 to-red-500",
+      hoverEffect: "group-hover:text-rose-300",
+      btnHover: "hover:text-rose-500",
+      path: "/learn",
     },
     {
       icon: Lightbulb,
@@ -66,7 +75,7 @@ const Index = () => {
       description: "Master efficient algorithms and optimization secrets",
       color: "from-emerald-400 to-green-600",
       hoverEffect: "group-hover:text-emerald-300",
-      btnHover: "hover:text-emerald-300",
+      btnHover: "hover:text-emerald-500",
       path: "/tricks",
     },
     {
@@ -75,7 +84,7 @@ const Index = () => {
       description: "Solve problems with real-time feedback",
       color: "from-orange-400 to-red-500",
       hoverEffect: "group-hover:text-orange-300",
-      btnHover: "hover:text-orange-300",
+      btnHover: "hover:text-orange-500",
       path: "/challenges",
     },
     {
@@ -84,16 +93,7 @@ const Index = () => {
       description: "Interactive binary fundamentals",
       color: "from-sky-400 to-purple-600",
       hoverEffect: "group-hover:text-sky-300",
-      btnHover: "hover:text-sky-300",
-      path: "/learn",
-    },
-    {
-      icon: ConeIcon,
-      title: "Converter",
-      description: "Convert number systems",
-      color: "from-yellow-400 to-amber-500",
-      hoverEffect: "group-hover:text-yellow-300",
-      btnHover: "hover:text-yellow-300",
+      btnHover: "hover:text-sky-500",
       path: "/learn",
     },
   ];
@@ -142,7 +142,7 @@ const Index = () => {
 
       <div className="relative z-10">
         {/* Enhanced Hero Section */}
-        <header className="container mx-auto py-14">
+        <header className="container mx-auto pt-32 pb-16 py-14">
           <div className="text-center mb-16">
             {/* Animated Binary Display */}
             <div className="flex items-center justify-center text-4xl font-mono mb-4 space-x-2">
@@ -162,7 +162,7 @@ const Index = () => {
               <h1 className="text-7xl z-10 md:text-8xl font-black pb-4 mb-2 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tight">
                 BitMagic
               </h1>
-              <div className="absolute -top-4 -right-4 text-cyan-400 opacity-70">
+              <div className="absolute -top-4 -right-4 text-cyan-400/15 opacity-70">
                 <Star className="w-16 h-16 animate-[spin_8s_linear_infinite]" />
               </div>
               <div className="absolute -bottom-4 -left-4 text-purple-400 opacity-50">

@@ -144,7 +144,7 @@ const NumberConverter = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* Input Section */}
             <Card className="rounded-lg bg-slate-900/50 border-slate-700 backdrop-blur-sm shadow-2xl">
               <div className="flex flex-col border-slate-800/50">

@@ -67,7 +67,7 @@ const Index = () => {
       color: "from-rose-400 to-red-500",
       hoverEffect: "group-hover:text-rose-300",
       btnHover: "hover:text-rose-500",
-      path: "/learn",
+      path: "/converter",
     },
     {
       icon: Lightbulb,

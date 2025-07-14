@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Card, Button } from "flowbite-react";
-import { Binary, Calculator, ArrowLeft, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Binary, Calculator, Zap } from "lucide-react";
 
 const BinaryCalculator = () => {
   const [num1, setNum1] = useState("1010");
@@ -117,7 +116,7 @@ const BinaryCalculator = () => {
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">
             <div className="flex-1">
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-violet-500 bg-clip-text text-transparent flex items-center gap-3">
+              <h1 className="text-3xl font-bold pb-1 bg-gradient-to-r from-purple-400 to-violet-500 bg-clip-text text-transparent flex items-center gap-3">
                 <Binary className="h-8 w-8 text-purple-400" />
                 Binary Calculator
               </h1>

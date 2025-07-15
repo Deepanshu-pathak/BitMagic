@@ -1,11 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, Button } from "flowbite-react";
-import { Lightbulb, Code, X, ChevronRight, List } from "lucide-react";
+import {
+  Lightbulb,
+  Code,
+  X,
+  ChevronRight,
+  List,
+  LoaderPinwheel,
+  BookOpen,
+} from "lucide-react";
 import { tricks } from "../data/bitTricks";
+import { explainBitTrick } from "../utils/gemini";
 
 const BitManipulationTricks = () => {
   const [selectedTrick, setSelectedTrick] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [aiData, setAiData] = useState<Record<number, any>>({});
+  const [loadingAI, setLoadingAI] = useState(false);
+  const [showAI, setShowAI] = useState(false);
+
+  useEffect(() => {
+    setShowAI(false); // Reset visibility on trick change
+  }, [selectedTrick]);
+
+  const handleFurtherExplain = async () => {
+    const code = tricks[selectedTrick].code;
+
+    // Already cached? Just show it.
+    if (aiData[selectedTrick]) {
+      setShowAI(true);
+      return;
+    }
+
+    setLoadingAI(true);
+    const data = await explainBitTrick(code);
+    setAiData((prev) => ({
+      ...prev,
+      [selectedTrick]: data,
+    }));
+    setLoadingAI(false);
+    setShowAI(true);
+  };
 
   const TricksList = () => (
     <div className="space-y-2 h-[600px] overflow-scroll scrollbar-hide">
@@ -84,7 +119,7 @@ const BitManipulationTricks = () => {
                 <div className="absolute p-4 left-0 top-0 h-full w-80 bg-slate-900 border-r border-slate-800">
                   <div className="pb-4 border-b border-slate-800">
                     <h2 className="text-lg font-semibold flex items-center gap-2 text-emerald-400">
-                      <Lightbulb className="h-6 w-6" />
+                      <BookOpen className="h-6 w-6" />
                       Tricks Library
                     </h2>
                   </div>
@@ -98,7 +133,7 @@ const BitManipulationTricks = () => {
               <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-sm">
                 <div className="flex flex-col border-slate-800/50">
                   <div className="text-2xl font-semibold text-emerald-400 flex items-center gap-2">
-                    <Lightbulb className="h-6 w-6" />
+                    <BookOpen className="h-6 w-6" />
                     Tricks Library
                   </div>
                   <div className="text-sm text-slate-400">
@@ -138,10 +173,65 @@ const BitManipulationTricks = () => {
                     </p>
                   </div>
                 </div>
-                <button className="text-emerald-400 font-semibold mb-2">
-                  Further Explain
-                </button>
+                {!showAI && (
+                  <Button
+                    className="p-3 border border-emerald-600 text-emerald-400 hover:bg-emerald-800/50 transition-all duration-200"
+                    onClick={handleFurtherExplain}
+                  >
+                    {loadingAI ? (
+                      <LoaderPinwheel className="animate-spin" />
+                    ) : (
+                      <span className="inline-flex items-center gap-2">
+                        <Lightbulb className="w-5 h-5" />
+                        Let AI Explain
+                      </span>
+                    )}
+                  </Button>
+                )}
               </Card>
+              {aiData[selectedTrick] && showAI && (
+                <Card className="bg-emerald-900/40 border-slate-800 backdrop-blur-sm">
+                  <div className="flex flex-col border-slate-800/50">
+                    <div className="text-2xl font-semibold text-emerald-400 flex items-center gap-2">
+                      <Code className="h-6 w-6" />
+                      {tricks[selectedTrick].title}
+                    </div>
+                    <div className="text-sm text-slate-400">
+                      AI - Powered Simplified Explanation
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                      <h4 className="text-emerald-400 font-semibold mb-2">
+                        Explanation:
+                      </h4>
+                      <p className="text-slate-400 leading-relaxed">
+                        {aiData[selectedTrick].explanation}
+                      </p>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                      <h4 className="text-emerald-400 font-semibold mb-2">
+                        Example:
+                      </h4>
+                      <p className="text-slate-400 leading-relaxed">
+                        {aiData[selectedTrick].example}
+                      </p>
+                    </div>
+                    <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                      <h4 className="text-emerald-400 font-semibold mb-2">
+                        Test Cases:
+                      </h4>
+                      <ul className="text-slate-400 list-disc list-inside">
+                        {aiData[selectedTrick].testCases.map(
+                          (tc: string, idx: number) => (
+                            <li key={idx}>{tc}</li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+                </Card>
+              )}
             </div>
           </div>
         </div>

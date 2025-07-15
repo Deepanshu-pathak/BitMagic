@@ -84,7 +84,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-slate-700 pt-4">
+          <div className="lg:hidden mt-4 z-50 pb-4 border-t border-slate-700 pt-4">
             <div className="flex flex-col space-y-2">
               {navItems.map((item, index) => (
                 <Link

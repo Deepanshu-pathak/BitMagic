@@ -1,8 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 import { hashString } from "../utils/hashString";
 
-const apiKey = "AIzaSyAFT9X7olVgUsotLErV6OyqHMKMpMdzQ8M";
-const genAI = new GoogleGenAI({ apiKey });
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
+const genAI = new GoogleGenAI(GEMINI_API_KEY);
 
 export async function explainBitTrick(trickCode: string) {
   const cacheKey = hashString(trickCode);

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Card, Button } from "flowbite-react";
-import { Binary, Calculator, Zap } from "lucide-react";
+import { Binary, Calculator, Circle, Square, Triangle, Zap } from "lucide-react";
 
 const BinaryCalculator = () => {
-  const [num1, setNum1] = useState("1010");
-  const [num2, setNum2] = useState("0110");
+  const [num1, setNum1] = useState(" ");
+  const [num2, setNum2] = useState(" ");
   const [operation, setOperation] = useState("+");
+  const [error, setError] = useState("");
   const [result, setResult] = useState<number | null>(null);
 
   const operations = [
@@ -21,38 +22,45 @@ const BinaryCalculator = () => {
   ];
 
   const calculate = () => {
+    if (!/^\d+$/.test(num1) || !/^\d+$/.test(num2)) {
+      setResult(null);
+      setError("Please enter valid numbers.");
+      return;
+    }
+    setError("");
     try {
-      const decimal1 = parseInt(num1, 2);
-      const decimal2 = parseInt(num2, 2);
+      const dec1 = parseInt(num1, 10);
+      const dec2 = parseInt(num2, 10);
+
       let calculationResult: number;
 
       switch (operation) {
         case "+":
-          calculationResult = decimal1 + decimal2;
+          calculationResult = dec1 + dec2;
           break;
         case "-":
-          calculationResult = decimal1 - decimal2;
+          calculationResult = dec1 - dec2;
           break;
         case "*":
-          calculationResult = decimal1 * decimal2;
+          calculationResult = dec1 * dec2;
           break;
         case "/":
-          calculationResult = Math.floor(decimal1 / decimal2);
+          calculationResult = Math.floor(dec1 / dec2);
           break;
         case "&":
-          calculationResult = decimal1 & decimal2;
+          calculationResult = dec1 & dec2;
           break;
         case "|":
-          calculationResult = decimal1 | decimal2;
+          calculationResult = dec1 | dec2;
           break;
         case "^":
-          calculationResult = decimal1 ^ decimal2;
+          calculationResult = dec1 ^ dec2;
           break;
         case "<<":
-          calculationResult = decimal1 << decimal2;
+          calculationResult = dec1 << dec2;
           break;
         case ">>":
-          calculationResult = decimal1 >> decimal2;
+          calculationResult = dec1 >> dec2;
           break;
         default:
           calculationResult = 0;
@@ -60,7 +68,9 @@ const BinaryCalculator = () => {
 
       setResult(calculationResult);
     } catch (error) {
-      console.error("Calculation error:", error);
+      setResult(null);
+      setError("Calculation Error. Please try again.");
+      return;
     }
   };
 
@@ -70,17 +80,14 @@ const BinaryCalculator = () => {
 
   const BitVisualization = ({
     binary,
-    label,
   }: {
     binary: string;
-    label: string;
   }) => (
-    <div className="space-y-3">
-      <div className="text-sm text-slate-400 font-medium">{label}</div>
+    <div className="space-y-2">
       <div className="overflow-x-auto scrollbar-hide">
-        <div className="flex space-x-1 py-2 font-mono text-lg w-max">
+        <div className="flex space-x-1 font-mono text-lg w-max">
           {binary
-            .padStart(6, "0")
+            .padStart(8, "0")
             .split("")
             .map((bit, index) => (
               <div
@@ -95,10 +102,6 @@ const BinaryCalculator = () => {
               </div>
             ))}
         </div>
-      </div>
-      <div className="text-sm text-slate-500 bg-slate-800/30 rounded p-2 border border-slate-700">
-        Decimal:{" "}
-        <span className="text-purple-400 font-mono">{parseInt(binary, 2)}</span>
       </div>
     </div>
   );
@@ -137,43 +140,54 @@ const BinaryCalculator = () => {
                     Binary Operations
                   </div>
                   <div className="text-sm text-slate-400">
-                    Input binary numbers and perform calculations with live bit
+                    Input numbers and perform calculations with live bit
                     visualization
                   </div>
                 </div>
                 <div className="space-y-8">
                   {/* Input Numbers */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-3">
-                      <div className="text-sm text-slate-300 font-medium">
-                        First Number (Binary)
+                  <div className="space-y-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-3">
+                        <div className="text-sm text-slate-300 font-medium">
+                          First Number
+                        </div>
+                        <input
+                          onChange={(e) => {
+                            setNum1(e.target.value);
+                            setResult(null);
+                            setError("")
+                          }}
+                          placeholder="e.g., 1010, 1101"
+                          className="flex h-10 w-full rounded-md border px-3 py-2 bg-slate-800/50 border-slate-600 text-white font-mono text-lg focus:border-purple-500 focus:ring-purple-500/20"
+                        />
+                        <BitVisualization
+                          binary={parseInt(num1, 10).toString(2)}
+                        />
                       </div>
-                      <input
-                        onChange={(e) =>
-                          setNum1(e.target.value.replace(/[^01]/g, ""))
-                        }
-                        placeholder="1010"
-                        className="flex h-10 w-full rounded-md border px-3 py-2 bg-slate-800/50 border-slate-600 text-white font-mono text-lg focus:border-purple-500 focus:ring-purple-500/20"
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <div className="text-sm text-slate-300 font-medium">
-                        Second Number (Binary)
+                      <div className="space-y-3">
+                        <div className="text-sm text-slate-300 font-medium">
+                          Second Number
+                        </div>
+                        <input
+                          onChange={(e) => {
+                            setNum2(e.target.value);
+                            setResult(null);
+                            setError("")
+                          }}
+                          placeholder="e.g., 1010, 1101"
+                          className="flex h-10 w-full rounded-md border px-3 py-2 bg-slate-800/50 border-slate-600 text-white font-mono text-lg focus:border-purple-500 focus:ring-purple-500/20"
+                        />
+                        <BitVisualization
+                          binary={parseInt(num2, 10).toString(2)}
+                        />
                       </div>
-                      <input
-                        onChange={(e) =>
-                          setNum2(e.target.value.replace(/[^01]/g, ""))
-                        }
-                        placeholder="0110"
-                        className="flex h-10 w-full rounded-md border px-3 py-2 bg-slate-800/50 border-slate-600 text-white font-mono text-lg focus:border-purple-500 focus:ring-purple-500/20"
-                      />
                     </div>
-                  </div>
-
-                  {/* Bit Visualizations */}
-                  <div className="space-y-6 bg-slate-800/30 rounded-xl p-6 border border-slate-700">
-                    <BitVisualization binary={num1} label="First Number" />
-                    <BitVisualization binary={num2} label="Second Number" />
+                    {error && (
+                      <div className="text-purple-400 text-sm bg-purple-500/10 p-2 rounded border border-purple-500/20 ">
+                        {error}
+                      </div>
+                    )}
                   </div>
 
                   {/* Operations */}
@@ -221,32 +235,31 @@ const BinaryCalculator = () => {
                     </div>
                   </div>
                   <div className="space-y-6">
-                    <BitVisualization
-                      binary={result.toString(2)}
-                      label="Result"
-                    />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="text-center bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                        <div className="text-sm text-slate-400 mb-2">
-                          Binary
-                        </div>
-                        <div className="font-mono text-xl text-purple-400">
-                          {formatBinary(result)}
-                        </div>
-                      </div>
-                      <div className="text-center bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                        <div className="text-sm text-slate-400 mb-2">
+                      <div className="flex flex-col items-center bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                        <div className="text-sm font-semibold text-slate-400 flex items-center gap-2">
+                          <Circle className="h-5 w-5" />
                           Decimal
                         </div>
-                        <div className="font-mono text-xl text-purple-400">
+                        <div className="w-full text-center overflow-scroll scrollbar-hide mt-2 font-mono text-xl text-purple-400">
                           {result}
                         </div>
                       </div>
-                      <div className="text-center bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                        <div className="text-sm text-slate-400 mb-2">
+                      <div className="flex flex-col items-center bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                        <div className="text-sm font-semibold text-slate-400 flex items-center gap-2">
+                          <Triangle className="h-5 w-5" />
+                          Binary
+                        </div>
+                        <div className="w-full text-center overflow-scroll scrollbar-hide mt-2 font-mono text-xl text-purple-400">
+                          {formatBinary(result)}
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-center bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                        <div className="text-sm font-semibold text-slate-400 flex items-center gap-2">
+                          <Square className="h-5 w-5" />
                           Hexadecimal
                         </div>
-                        <div className="font-mono text-xl text-purple-400">
+                        <div className="w-full text-center overflow-scroll scrollbar-hide mt-2 font-mono text-xl text-purple-400">
                           0x{result.toString(16).toUpperCase()}
                         </div>
                       </div>
@@ -256,7 +269,7 @@ const BinaryCalculator = () => {
               )}
             </div>
 
-            <div className="space-y-8">
+            <div className="hidden lg:block space-y-8">
               {/* Quick Reference */}
               <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm shadow-2xl">
                 <div className="border-b border-slate-800/50">

@@ -91,6 +91,7 @@ const NumberConverter = () => {
       });
     } catch (err) {
       setError("Conversion failed. Please check your input.");
+      return;
     }
   };
 

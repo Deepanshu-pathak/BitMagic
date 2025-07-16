@@ -77,7 +77,7 @@ const BitManipulationTricks = () => {
         <div className="absolute bottom-1/4 left-1/4 w-80 h-80 rounded-full bg-gradient-to-r from-green-500/10 to-emerald-500/10 blur-2xl animate-pulse delay-1000"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-8 pt-24">
+      <div className="relative z-10 px-6 py-8 pt-24">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="flex items-center gap-4 mb-8">
@@ -148,7 +148,7 @@ const BitManipulationTricks = () => {
             <div className="lg:col-span-8 space-y-6">
               {/* Trick Details */}
               <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-sm">
-                <div className="flex flex-col border-slate-800/50">
+                <div className="flex flex-col border border-slate-800/50">
                   <div className="text-2xl font-semibold text-emerald-400 flex items-center gap-2">
                     <Code className="h-6 w-6" />
                     {tricks[selectedTrick].title}

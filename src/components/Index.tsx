@@ -255,7 +255,7 @@ const Index = () => {
                 </div>
                 <div className="group">
                   <div className="text-4xl font-black bg-gradient-to-r from-purple-400 to-violet-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
-                    10+
+                    15+
                   </div>
                   <div className="text-slate-400 font-medium">Bit Tricks</div>
                 </div>
@@ -269,7 +269,7 @@ const Index = () => {
                   <div className="text-4xl font-black bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                     AI
                   </div>
-                  <div className="text-slate-400 font-medium">Powered</div>
+                  <div className="text-slate-400 font-medium">Explanation</div>
                 </div>
               </div>
             </div>

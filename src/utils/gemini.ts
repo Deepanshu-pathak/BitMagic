@@ -21,7 +21,6 @@ You are a programming assistant helping explain bit manipulation tricks to begin
 Your task is to analyze the following Python code snippet and return a clear, structured explanation in **valid JSON format**.
 Please follow this **strict JSON schema**:
 {
-  "title": "string - short and clear name of the trick",
   "explanation": "string - concise and beginner-friendly explanation of what the trick does and how it works",
   "example": "string - a simple and clear example showing the trick in action (e.g., input/output and short explanation)",
   "testCases": [
@@ -71,18 +70,93 @@ ${trickCode}
         : [];
 
       return {
-        title: parsed.title ?? "Untitled",
         explanation,
         example,
         testCases,
       };
     } catch (error) {
-      console.error("Parsing failed:", error);
       return {
-        title: "AI Error",
         explanation: "Failed to parse Gemini output.",
         example: "",
         testCases: [],
+      };
+    }
+  }
+}
+
+export async function evaluateExpressionWithAI(expression: string) {
+  const prompt = `
+ You're an expert at explaining bit manipulation to beginners.
+Please analyze the following bitwise expression:
+
+Expression: ${expression}
+
+Return your response in strict JSON format with the following schema as reference:
+{
+  "title": "Simplified Explanation",
+  "explanation": "Bitwise AND has higher precedence than XOR, so we evaluate 5 & 6 first, then XOR with 9.",
+  "steps": [
+    " 5 & 6 = 0101 & 0110 = 0100 (4)",
+    " 4 ^ 9 = 0100 ^ 1001 = 1101 (13)"
+  ],
+  "output": (13) decimal output of the expression,
+  "example": {
+    "binaryExplanation": [
+      "5 = 0101",
+      "6 = 0110",
+      "5 & 6 = 0100 = 4",
+      "9 = 1001",
+      "4 ^ 9 = 1101 = 13"
+    ]
+  }
+}
+
+Constraints:
+- Respond **only with a valid JSON object**, no markdown or additional commentary.
+- Keep the explanation **short**, use no more than 100 words.
+- Use **clear binary** representations in steps or example.
+- Provide only one example 
+
+  `;
+
+  const response = await genAI.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt,
+  });
+  const result = response.text;
+  if (result) {
+    const cleaned = result.replace(/```json|```js|```/g, "").trim();
+
+    try {
+      const parsed = JSON.parse(cleaned);
+
+      const title =parsed.title??""
+      const explanation = parsed.explanation ?? "";
+      const steps = Array.isArray(parsed.steps)
+        ? parsed.steps.map(
+            (step: string, i: number) => `Step ${i + 1}: ${step}`
+          )
+        : [];
+      const output= parsed.output??""
+      const example = parsed.example ?? {}
+      const binaryExplanation = Array.isArray(example.binaryExplanation)
+    ? example.binaryExplanation
+    : [];
+
+      return {
+        title,
+        explanation,
+        steps,
+        output,
+        binaryExplanation,
+      };
+    } catch (err) {
+      return {
+        title:"Error...",
+        explanation:"Expression Evaluation Failed",
+        steps:[],
+        output:"",
+        binaryExplanation:"",
       };
     }
   }

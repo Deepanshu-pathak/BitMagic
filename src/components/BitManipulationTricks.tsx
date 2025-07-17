@@ -191,7 +191,7 @@ const BitManipulationTricks = () => {
               </Card>
               {aiData[selectedTrick] && showAI && (
                 <Card className="bg-emerald-900/40 border-slate-800 backdrop-blur-sm">
-                  <div className="flex flex-col border-slate-800/50">
+                  <div className="flex flex-col border-b border-slate-800/50">
                     <div className="text-2xl font-semibold text-emerald-400 flex items-center gap-2">
                       <Code className="h-6 w-6" />
                       {tricks[selectedTrick].title}

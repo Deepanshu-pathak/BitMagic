@@ -4,6 +4,12 @@
 
 ---
 
+## 🌐 Live Demo
+Check out 👉
+https://bit-magic.vercel.app/
+
+---
+
 ## 🚀 Features
 
 ### 🧠 Bit Evaluator
@@ -77,11 +83,6 @@
 
 ---
 
-## 🌐 Live Demo
-
-> Coming Soon — Deployed on **Vercel**
-
----
 
 ## 🧩 Credits
 

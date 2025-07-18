@@ -79,15 +79,6 @@ const Index = () => {
       path: "/tricks",
     },
     {
-      icon: Code2,
-      title: "Code Challenges",
-      description: "Solve problems with real-time feedback",
-      color: "from-orange-400 to-red-500",
-      hoverEffect: "group-hover:text-orange-300",
-      btnHover: "hover:text-orange-500",
-      path: "/challenges",
-    },
-    {
       icon: BookOpen,
       title: "Learn",
       description: "Interactive binary fundamentals",
@@ -186,20 +177,20 @@ const Index = () => {
                   Start
                 </Button>
               </Link>
-              <Link to="/evaluator">
+              <a href="#explore">
                 <Button
                   size="lg"
                   className="border-2 border-slate-700 bg-slate-900/50 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-4 rounded-xl font-bold text-lg backdrop-blur-sm transition-all duration-300 hover:scale-105"
                 >
                   Explore
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </header>
 
         {/* Enhanced Features Grid */}
-        <section className="container mx-auto py-6 lg:py-14">
+        <section id="explore" className="container mx-auto py-6 lg:py-14">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
               <Card

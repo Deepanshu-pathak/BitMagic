@@ -8,7 +8,7 @@ import BitManipulationTricks from "./components/BitManipulationTricks";
 // import CodingChallenges from "./components/CodingChallenges";
 // import LearningResources from "./components/LearningResources";
 import Navbar from "./components/Navbar";
-import ScrollReset from "./components/ScrollReset";
+import ScrollReset from "./utils/ScrollReset";
 
 const queryClient = new QueryClient();
 

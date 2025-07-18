@@ -3,11 +3,11 @@ import {
   Calculator,
   Binary,
   Lightbulb,
-  Code2,
   BookOpen,
   RefreshCw,
   Menu,
   X,
+  Home,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -16,6 +16,12 @@ const Navbar = () => {
   const location = useLocation();
 
   const navItems = [
+    {
+      icon: Home,
+      title: "Home",
+      path: "/",
+      color: "text-slate-200 hover:text-slate-100",
+    },
     {
       icon: Calculator,
       title: "Evaluator",
@@ -41,16 +47,10 @@ const Navbar = () => {
       color: "text-emerald-400 hover:text-emerald-300",
     },
     {
-      icon: Code2,
-      title: "Challenges",
-      path: "/challenges",
-      color: "text-orange-400 hover:text-orange-300",
-    },
-    {
       icon: BookOpen,
       title: "Learn",
       path: "/learn",
-      color: "text-indigo-400 hover:text-indigo-300",
+      color: "text-indigo-400 hover:text-indigo-300 ",
     },
   ];
 
@@ -62,8 +62,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link
             to="/"
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
+            className="flex items-center justify-center text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
           >
+            <img src="./logo.png" alt="Logo" className="w-10 h-10 " />
             BitMagic
           </Link>
 
@@ -114,8 +115,8 @@ const Navbar = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-all duration-200 ${
                       isActive(item.path)
-                        ? `${item.color} bg-slate-800/50`
-                        : `${item.color} hover:bg-slate-800/50`
+                        ? `${item.color} bg-slate-700/50`
+                        : `${item.color} hover:bg-slate-700/50`
                     }`}
                   >
                     <item.icon className="w-5 h-5" />

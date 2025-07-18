@@ -158,7 +158,7 @@ const BinaryCalculator = () => {
                             setResult(null);
                             setError("")
                           }}
-                          placeholder="e.g., 1010, 1101"
+                          placeholder="e.g., 34, 57"
                           className="flex h-10 w-full rounded-md border px-3 py-2 bg-slate-800/50 border-slate-600 text-white font-mono text-lg focus:border-purple-500 focus:ring-purple-500/20"
                         />
                         <BitVisualization
@@ -175,7 +175,7 @@ const BinaryCalculator = () => {
                             setResult(null);
                             setError("")
                           }}
-                          placeholder="e.g., 1010, 1101"
+                          placeholder="e.g., 34, 57"
                           className="flex h-10 w-full rounded-md border px-3 py-2 bg-slate-800/50 border-slate-600 text-white font-mono text-lg focus:border-purple-500 focus:ring-purple-500/20"
                         />
                         <BitVisualization

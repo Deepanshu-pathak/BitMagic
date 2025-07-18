@@ -18,13 +18,13 @@ const Navbar = () => {
   const navItems = [
     {
       icon: Calculator,
-      title: "Expression Evaluator",
+      title: "Evaluator",
       path: "/evaluator",
       color: "text-cyan-400 hover:text-cyan-300",
     },
     {
       icon: Binary,
-      title: "Binary Calculator",
+      title: "Calculator",
       path: "/calculator",
       color: "text-purple-400 hover:text-purple-300",
     },
@@ -100,12 +100,12 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="fixed mt-18 h-screen inset-0 z-50 lg:hidden">
+          <div className="fixed mt-18 h-screen inset-0 z-50 lg:hidden ">
             <div
               className="absolute inset-0 bg-black/50"
               onClick={() => setIsMenuOpen(false)}
             />
-            <div className="absolute p-4 w-full bg-slate-900 border-t border-slate-700">
+            <div className="absolute p-4 w-full bg-slate-900/80 backdrop-blur-md border-t border-slate-700">
               <div className="flex flex-col space-y-2">
                 {navItems.map((item, index) => (
                   <Link

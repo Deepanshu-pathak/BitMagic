@@ -8,18 +8,20 @@ import BitManipulationTricks from "./components/BitManipulationTricks";
 // import CodingChallenges from "./components/CodingChallenges";
 // import LearningResources from "./components/LearningResources";
 import Navbar from "./components/Navbar";
+import ScrollReset from "./utils/scrollReset";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+      <ScrollReset />
       <Navbar />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/evaluator" element={<BitExpressionEvaluator />} />
         <Route path="/calculator" element={<BinaryCalculator />} />
-        <Route path="/converter" element={<NumberConverter/>}/>
+        <Route path="/converter" element={<NumberConverter />} />
         <Route path="/tricks" element={<BitManipulationTricks />} />
         {/* <Route path="/challenges" element={<CodingChallenges />} /> */}
         {/* <Route path="/learn" element={<LearningResources />} /> */}

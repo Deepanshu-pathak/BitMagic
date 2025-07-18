@@ -99,8 +99,8 @@ const BitManipulationTricks = () => {
                 </div>
               </div>
               <p className="text-slate-400 mt-2">
-                Master efficient bit manipulation tricks and optimization
-                secrets
+                Learn efficient bit manipulation tricks and optimization secrets
+                with simplified explanation
               </p>
             </div>
           </div>
@@ -151,7 +151,7 @@ const BitManipulationTricks = () => {
             <div className="lg:col-span-8 space-y-6">
               {/* Trick Details */}
               <Card className="bg-slate-900/40 border-slate-800 backdrop-blur-sm">
-                <div className="flex flex-col border border-slate-800/50">
+                <div className="flex flex-col ">
                   <div className="text-2xl font-semibold text-emerald-400 flex items-center gap-2">
                     <Code className="h-6 w-6" />
                     {tricks[selectedTrick].title}

@@ -62,7 +62,7 @@ const Index = () => {
     },
     {
       icon: RefreshCw,
-      title: "Converter",
+      title: "Number Converter",
       description: "Convert number systems",
       color: "from-rose-400 to-red-500",
       hoverEffect: "group-hover:text-rose-300",
@@ -72,7 +72,7 @@ const Index = () => {
     {
       icon: Lightbulb,
       title: "Bit Tricks",
-      description: "Master efficient algorithms and optimization secrets",
+      description: "Master efficient tricks and optimization secrets",
       color: "from-emerald-400 to-green-600",
       hoverEffect: "group-hover:text-emerald-300",
       btnHover: "hover:text-emerald-500",

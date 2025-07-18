@@ -91,11 +91,11 @@ const BitExpressionEvaluator = () => {
             <div className="flex-1">
               <h1 className="text-3xl font-bold pb-1 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent flex items-center gap-3">
                 <Calculator className="h-8 w-8 text-cyan-400" />
-                Bit Expression Evaluator
+                Expression Evaluator
               </h1>
               <p className="text-slate-400 mt-2">
-                Enter bitwise expressions and get multi-format results with AI
-                Explanation
+                Enter bitwise expression and get multi-format result with step-by-step
+                explanation
               </p>
             </div>
           </div>

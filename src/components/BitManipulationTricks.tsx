@@ -3,11 +3,11 @@ import { Card, Button } from "flowbite-react";
 import {
   Lightbulb,
   Code,
-  X,
   ChevronRight,
-  List,
+  Puzzle,
   LoaderPinwheel,
   BookOpen,
+  X,
 } from "lucide-react";
 import { tricks } from "../data/bitTricks";
 import { explainBitTrick } from "../utils/gemini";
@@ -90,20 +90,17 @@ const BitManipulationTricks = () => {
                 <div className="flex items-center space-x-4">
                   <Button
                     outline
-                    size="lg"
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                    className="lg:hidden p-2 bg-emerald-600/20 border-emerald-600 text-emerald-300"
+                    className="lg:hidden flex gap-2 text-sm p-2 bg-emerald-600/20 border-emerald-600 text-emerald-300"
                   >
-                    {isSidebarOpen ? (
-                      <X className="h-6 w-6" />
-                    ) : (
-                      <List className="h-6 w-6" />
-                    )}
+                    <Puzzle className="h-4 w-4" />
+                    Tricks
                   </Button>
                 </div>
               </div>
               <p className="text-slate-400 mt-2">
-                Master efficient algorithms and optimization secrets
+                Master efficient bit manipulation tricks and optimization
+                secrets
               </p>
             </div>
           </div>
@@ -111,17 +108,23 @@ const BitManipulationTricks = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Mobile Sidebar Overlay */}
             {isSidebarOpen && (
-              <div className="fixed mt-20 inset-0 z-50 lg:hidden">
+              <div className="fixed mt-18 inset-0 z-50 lg:hidden">
                 <div
                   className="absolute inset-0 bg-black/50"
                   onClick={() => setIsSidebarOpen(false)}
                 />
-                <div className="absolute p-4 left-0 top-0 h-full w-80 bg-slate-900 border-r border-slate-800">
-                  <div className="pb-4 border-b border-slate-800">
+                <div className="absolute p-4 left-0 top-0 h-full w-80 bg-slate-900  border-r border-slate-800">
+                  <div className="flex justify-between pb-4 ">
                     <h2 className="text-lg font-semibold flex items-center gap-2 text-emerald-400">
                       <BookOpen className="h-6 w-6" />
                       Tricks Library
                     </h2>
+                    <Button
+                      onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                      className=" text-emerald-300 hover:scale-110"
+                    >
+                      <X className="h-6 w-6" />
+                    </Button>
                   </div>
                   <TricksList />
                 </div>
@@ -183,7 +186,7 @@ const BitManipulationTricks = () => {
                     ) : (
                       <span className="inline-flex items-center gap-2">
                         <Lightbulb className="w-5 h-5" />
-                        Let AI Explain
+                        Break-It-Down
                       </span>
                     )}
                   </Button>

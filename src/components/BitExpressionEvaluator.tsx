@@ -10,6 +10,7 @@ import {
   Info,
   LoaderPinwheel,
   TriangleAlert,
+  Lightbulb,
 } from "lucide-react";
 import { evaluateExpressionWithAI } from "../utils/gemini";
 
@@ -27,7 +28,7 @@ const BitExpressionEvaluator = () => {
     binaryExplanation?: string[];
   } | null>(null);
 
-  const evaluateExpression = async () => {
+  const handleEvaluateExpression = () => {
     const processedExpression = expression
       .replace(/&/g, "&")
       .replace(/\|/g, "|")
@@ -35,25 +36,40 @@ const BitExpressionEvaluator = () => {
       .replace(/<</g, "<<")
       .replace(/>>/g, ">>")
       .replace(/\s+/g, "");
+
     if (!processedExpression) {
       setResult(null);
       setError("Please enter a valid expression.");
       return;
     }
+
     try {
-      if (eval(processedExpression)) {
-        setLoadingAI(true);
-        const data = await evaluateExpressionWithAI(processedExpression);
-        setResult(data?.output);
-        setShowAI(true);
-        setLoadingAI(false);
-        if (data) setaiExplanation(data);
+      const evalResult = eval(processedExpression);
+      setResult(evalResult);
+      setExpression(processedExpression);
+      setError("");
+    } catch {
+      setResult(null);
+      setError("Error evaluating expression. Please check your syntax.");
+    }
+  };
+
+  const handleAIExplanation = async () => {
+    try {
+      setLoadingAI(true);
+      const data = await evaluateExpressionWithAI(expression);
+      setLoadingAI(false);
+      setShowAI(true);
+
+      if (data) {
+        setaiExplanation(data);
+      } else {
+        setaiExplanation(null);
       }
     } catch {
-      setError("Error evaluating expression. Please check your syntax.");
-      return;
+      setLoadingAI(false);
+      setError("Failed to fetch AI explanation.");
     }
-    setError("");
   };
 
   const formatBinary = (num: number) => {
@@ -105,6 +121,7 @@ const BitExpressionEvaluator = () => {
                   onChange={(e) => {
                     setExpression(e.target.value);
                     setError("");
+                    setResult(null);
                     setShowAI(false);
                   }}
                   placeholder="e.g., 5 & 7, 4 << 2, (8 | 1) ^ 7"
@@ -118,26 +135,19 @@ const BitExpressionEvaluator = () => {
                 )}
               </div>
               <Button
-                onClick={evaluateExpression}
+                onClick={handleEvaluateExpression}
                 className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-cyan-500/25 py-6 text-lg font-semibold"
               >
-                {loadingAI ? (
-                  <span className="inline-flex items-center gap-2">
-                    <LoaderPinwheel className="animate-spin" />
-                    Evaluating...
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-2">
-                    <Calculator className="w-5 h-5" />
-                    Evaluate
-                  </span>
-                )}
+                <span className="inline-flex items-center gap-2">
+                  <Calculator className="w-5 h-5" />
+                  Evaluate
+                </span>
               </Button>
             </div>
           </Card>
 
           {/* Results Display */}
-          {result && showAI && (
+          {result && (
             <Card className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-blue-500/30 backdrop-blur-sm hover:scale-[1.02] transition-transform duration-200">
               <div className="flex flex-col space-y-1.5 border-b border-cyan-500/20">
                 <div className="text-xl font-semibold text-cyan-400 flex items-center gap-2">
@@ -177,6 +187,21 @@ const BitExpressionEvaluator = () => {
                   </div>
                 </div>
               </div>
+              {!showAI && (
+                  <Button
+                    className="p-3 border border-cyan-600 text-cyan-400 hover:bg-cyan-800/50 transition-all duration-200"
+                    onClick={handleAIExplanation}
+                  >
+                    {loadingAI ? (
+                      <LoaderPinwheel className="animate-spin" />
+                    ) : (
+                      <span className="inline-flex items-center gap-2">
+                        <Lightbulb className="w-5 h-5" />
+                        Break-It-Down
+                      </span>
+                    )}
+                  </Button>
+                )}
             </Card>
           )}
 

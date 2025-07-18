@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Card, Button } from "flowbite-react";
-import { RefreshCw, Copy, Check } from "lucide-react";
+import { RefreshCw, Copy, Check, TriangleAlert } from "lucide-react";
 
 const tabs = ["dec", "bin", "hex", "oct"];
 
@@ -184,8 +184,8 @@ const NumberConverter = () => {
                   />
 
                   {error && (
-                    <div className="text-pink-400 text-sm bg-pink-500/10 p-2 rounded border border-pink-500/20">
-                      {error}
+                    <div className="flex gap-2 text-pink-400 text-sm bg-pink-500/10 p-2 rounded border border-pink-500/20">
+                      <TriangleAlert />{error}
                     </div>
                   )}
 

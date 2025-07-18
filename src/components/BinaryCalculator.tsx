@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Card, Button } from "flowbite-react";
-import { Binary, Calculator, Circle, Square, Triangle, Zap } from "lucide-react";
+import { Binary, Calculator, Circle, Square, Triangle, TriangleAlert, Zap } from "lucide-react";
 
 const BinaryCalculator = () => {
   const [num1, setNum1] = useState(" ");
@@ -184,8 +184,8 @@ const BinaryCalculator = () => {
                       </div>
                     </div>
                     {error && (
-                      <div className="text-purple-400 text-sm bg-purple-500/10 p-2 rounded border border-purple-500/20 ">
-                        {error}
+                      <div className="flex gap-2 text-purple-400 text-sm bg-purple-500/10 p-2 rounded border border-purple-500/20 ">
+                        <TriangleAlert /> {error}
                       </div>
                     )}
                   </div>

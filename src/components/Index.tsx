@@ -82,7 +82,7 @@ const Index = () => {
       icon: BookOpen,
       title: "Learn",
       description: "Interactive binary fundamentals",
-      color: "from-sky-400 to-purple-600",
+      color: "from-indigo-400 to-violet-600",
       hoverEffect: "group-hover:text-sky-300",
       btnHover: "hover:text-sky-500",
       path: "/learn",
@@ -242,7 +242,7 @@ const Index = () => {
                   <div className="text-4xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                     20+
                   </div>
-                  <div className="text-slate-400 font-medium">Challenges</div>
+                  <div className="text-slate-400 font-medium">Lessons</div>
                 </div>
                 <div className="group">
                   <div className="text-4xl font-black bg-gradient-to-r from-purple-400 to-violet-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">

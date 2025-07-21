@@ -1,19 +1,16 @@
 import { useState, useEffect } from "react";
 import { Card, Button } from "flowbite-react";
 import {
-  Calculator,
   Binary,
-  Lightbulb,
   Code2,
-  BookOpen,
   Zap,
   ChevronRight,
   Cpu,
   Sparkles,
-  RefreshCw,
   Star,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { features } from "../data/bitFeatures";
 
 const Index = () => {
   const [animatedBits, setAnimatedBits] = useState("1011010110");
@@ -40,54 +37,6 @@ const Index = () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
-
-  const features = [
-    {
-      icon: Calculator,
-      title: "Expression Evaluator",
-      description: "Decode bitwise expressions with AI-powered insights",
-      color: "from-cyan-400 to-blue-600",
-      hoverEffect: "group-hover:text-cyan-300",
-      btnHover: "hover:text-cyan-500",
-      path: "/evaluator",
-    },
-    {
-      icon: Binary,
-      title: "Binary Calculator",
-      description: "Visual binary arithmetic with live bit manipulation",
-      color: "from-purple-400 to-violet-600",
-      hoverEffect: "group-hover:text-purple-300",
-      btnHover: "hover:text-purple-500",
-      path: "/calculator",
-    },
-    {
-      icon: RefreshCw,
-      title: "Number Converter",
-      description: "Convert number systems",
-      color: "from-rose-400 to-red-500",
-      hoverEffect: "group-hover:text-rose-300",
-      btnHover: "hover:text-rose-500",
-      path: "/converter",
-    },
-    {
-      icon: Lightbulb,
-      title: "Bit Tricks",
-      description: "Master efficient tricks and optimization secrets",
-      color: "from-emerald-400 to-green-600",
-      hoverEffect: "group-hover:text-emerald-300",
-      btnHover: "hover:text-emerald-500",
-      path: "/tricks",
-    },
-    {
-      icon: BookOpen,
-      title: "Learn",
-      description: "Interactive binary fundamentals",
-      color: "from-indigo-400 to-violet-600",
-      hoverEffect: "group-hover:text-sky-300",
-      btnHover: "hover:text-sky-500",
-      path: "/learn",
-    },
-  ];
 
   return (
     <div className="min-h-screen px-6 bg-slate-950 relative overflow-hidden">
@@ -257,7 +206,7 @@ const Index = () => {
                   <div className="text-slate-400 font-medium">Examples</div>
                 </div>
                 <div className="group">
-                  <div className="text-4xl font-black bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-4xl font-black bg-gradient-to-r from-pink-400 to-rose-500 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                     AI
                   </div>
                   <div className="text-slate-400 font-medium">Explanation</div>

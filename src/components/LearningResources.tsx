@@ -88,7 +88,7 @@ const LearningResources = () => {
                 </div>
               </div>
               <p className="text-slate-400 mt-2">
-                Interactive lessons on binary fundamentals
+                Interactive short lessons on binary fundamentals
               </p>
             </div>
           </div>
@@ -197,10 +197,13 @@ const LearningResources = () => {
                         }
                       }}
                       disabled={selectedLesson === 0 && currentStep === 0}
-                      className="p-4 border border-indigo-600 text-indigo-400 shadow-sm shadow-indigo-500 hover:bg-indigo-800/50 hover:shadow-md transition-all duration-300"
+                      className={`p-4  ${
+                        currentStep === 0
+                          ? "bg-indigo-600  hover:bg-indigo-700"
+                          : "border border-indigo-600 hover:bg-indigo-800/50"
+                      } text-white shadow-sm shadow-indigo-600`}
                     >
                       <ArrowLeft className="h-4 w-4 md:mr-2" />
-
                       {currentStep === 0 ? (
                         <span className="ml-2 md:ml-0">Prev Lesson</span>
                       ) : (
@@ -226,7 +229,11 @@ const LearningResources = () => {
                         selectedLesson === lessons.length - 1 &&
                         currentStep === lessons[selectedLesson].steps.length - 1
                       }
-                      className="p-4 border border-indigo-600 text-indigo-400 shadow-sm shadow-indigo-500 hover:bg-indigo-800/50 hover:shadow-md transition-all duration-300"
+                      className={`p-4  ${
+                        currentStep === lessons[selectedLesson].steps.length - 1
+                          ? "bg-indigo-600  hover:bg-indigo-700"
+                          : "border border-indigo-600 hover:bg-indigo-800/50"
+                      } text-white shadow-sm shadow-indigo-600 `}
                     >
                       {currentStep ===
                       lessons[selectedLesson].steps.length - 1 ? (

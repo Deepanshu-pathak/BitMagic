@@ -1,90 +1,48 @@
-# 🌟 BitMagic — Visualize, Learn & Master Bit Manipulation
+# BitMagic
 
-> A powerful and interactive platform built with **React**, **Tailwind CSS**, and **Gemini API**, designed to help developers understand, evaluate, and experiment with **bit manipulation** concepts.
+**_Logic is Magic - Think in Bits_**
+
+BitMagic is an interactive web app to **learn**, **visualize**, and **practice** bit manipulation. It’s designed for students, programmers, and competitive coders who want to strengthen their binary and bitwise logic.
 
 ---
 
 ## 🌐 Live Demo
-Check out 👉
-https://bit-magic.vercel.app/
+
+> Check Out 👉 https://bit-magic.vercel.app
+
+---
+
+## 🧠 Why BitMagic?
+
+Bit manipulation is a **core concept** in DSA, competitive programming, and low-level optimization — yet most learners find it **abstract and confusing**.
+
+**BitMagic** makes it:
+
+- Visual
+- Interactive
+- Explainable
+- Fun
 
 ---
 
 ## 🚀 Features
 
-### 🧠 Bit Evaluator
-- Enter custom bitwise expressions like `x & (x - 1)`
-- Real-time binary output and visual bit comparison
-- Gemini-powered explanations: **"What does this expression do?"**
-
-### 🧮 Binary Calculator
-- Perform **AND**, **OR**, **XOR**, **NOT**, **LEFT/RIGHT SHIFT**
-- Step-by-step visualization
-- Supports binary, decimal, octal, and hex formats
-
-### 🔁 Binary Converter
-- Convert between **Binary ↔ Decimal ↔ Hex ↔ Octal**
-- Instant updates with binary highlighting
-- User-controlled input base
-
-### ⚡ Bit Tricks Library
-- Pre-built explanations for popular tricks:
-  - `x & (x - 1)` – Clear lowest set bit
-  - `x & -x` – Isolate lowest set bit
-  - `x | (x - 1)` – Set all bits right of highest set bit
-  - Check if power of 2, count set bits, toggle bit, etc.
-- Click to try & visualize them
-
-### 📚 Learning Resources
-- Curated articles, videos & interactive guides
-- AI-powered explanations for any bit topic
-- Bit-level quizzes to test understanding
-
-### 🎯 Coding Challenges
-- Handpicked **DSA problems** focused on bits (LeetCode-style)
-- Gemini-generated hints and problem breakdowns
-- Interactive problem-solving space (optional: custom editor)
+- **Expression Evaluator** – Solve and understand expressions like `5 & 7 ^ 2 | 1` with binary breakdown and AI explanation.
+- **Binary Converter** – Convert between different number systems in real time.
+- **Binary Calculator** – Perform arithmetic and bitwise operations (AND, OR, XOR, NOT, Shifts).
+- **Bit Tricks** – Learn common bit tricks with examples and visual aids with AI explanation.
+- **Learn Section** – Step-by-step interactive lessons on binary, bitmasks, tricks, and more.
 
 ---
 
 ## 🛠 Tech Stack
 
-| Technology     | Purpose                        |
-|----------------|--------------------------------|
-| **React.js**   | Frontend framework              |
-| **Tailwind CSS** | Styling and layout             |
-| **Gemini API** | AI explanations & hints         |
-| **TypeScript** | Type safety                     |
-| **Vite**       | Dev environment & fast bundling |
-| **Icons**      | Lucide  |
-
----
-
-
-## 🧠 Why BitMagic?
-
-> Bit manipulation is a **core concept** in DSA, competitive programming, and low-level optimization — yet most learners find it **abstract and confusing**.
-
-**BitMagic** makes it:
-- ✅ Visual
-- ✅ Interactive
-- ✅ Explainable 
-- ✅ Fun
-
----
-
-## 📸 Screenshots (Optional)
-
-- Home screen with glassmorphic cards
-- Evaluator expression playground
-- Tricks visualization
-- Binary converter with animated bits
-- Learning and challenge sections
-
----
-
-
-## 🧩 Credits
-
-- Gemini API by Google
-- Designed and built by **Deepanshu Pathak**
+| Technology       | Purpose                         |
+| ---------------- | ------------------------------- |
+| **React.js**     | Frontend framework              |
+| **Tailwind CSS** | Styling and layout              |
+| **Gemini API**   | AI explanations & hints         |
+| **TypeScript**   | Type safety                     |
+| **Vite**         | Dev environment & fast bundling |
+| **Lucide**       | Icons                           |
+| **Vercel**       | Deployment                      |
